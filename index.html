@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>SELTOS INGENIERÍA | Construcción y Redes de Gas Natural</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Fancybox CSS para visualizar fotos en grande -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <style>
+        :root {
+            --navy-dark: #00102E;
+            --navy-primary: #001D52;
+            --navy-secondary: #062D73;
+            --accent-blue: #38BDF8;
+            --text-light: #F8FAFC;
+            --text-muted: #CBD5E1;
+            --text-dark: #0F172A;
+            --bg-light: #F1F5F9;
+            --white: #FFFFFF;
+            --card-shadow: 0 10px 30px -5px rgba(0, 16, 46, 0.1);
+            --card-shadow-hover: 0 20px 40px -5px rgba(0, 16, 46, 0.2);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Navegación */
+        header {
+            background-color: var(--navy-dark);
+            border-bottom: 2px solid var(--navy-secondary);
+            width: 100%;
+            position: relative;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 1.1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo img {
+            max-height: 55px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--navy-primary);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: var(--white);
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: var(--transition);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle:hover {
+            background: var(--navy-secondary);
+            border-color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.65rem 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: var(--navy-primary);
+            color: var(--accent-blue);
+        }
+
+        /* Botones de Acción Globales */
+        .btn-action {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.92rem;
+            padding: 0.75rem 1.4rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid transparent;
+        }
+
+        /* Sistema de Páginas */
+        main {
+            flex: 1;
+            width: 100%;
+        }
+
+        .page-view {
+            display: none;
+            width: 100%;
+        }
+
+        .page-view.active-page {
+            display: block;
+            animation: pageFadeIn 0.45s ease forwards;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-item.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 4.5rem 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background-color: rgba(0, 29, 82, 0.1);
+            color: var(--navy-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 0.85rem;
+            border-left: 3px solid var(--navy-primary);
+        }
+
+        .section-title {
+            font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+            color: var(--navy-dark);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: #475569;
+            font-size: 1.05rem;
+        }
+
+        /* HERO PORTADA */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), url('fondo.jpeg') center/cover no-repeat;
+            color: var(--navy-dark);
+            padding: 7.5rem 1.5rem;
+            position: relative;
+            border-bottom: 4px solid var(--navy-secondary);
+        }
+
+        .hero-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .foundation-year {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            color: var(--navy-dark);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            color: var(--navy-primary); 
+            text-shadow: 0 2px 15px rgba(255,255,255, 0.95), 0 0 35px rgba(255,255,255, 0.8);
+        }
+
+        .hero h1 span {
+            color: var(--navy-primary); 
+            display: block;
+        }
+
+        .hero-lead {
+            font-size: 1.2rem;
+            color: var(--white); 
+            margin-bottom: 2.5rem;
+            max-width: 820px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 10px rgba(0,0,0,0.8);
+            line-height: 1.7;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .hero-cta-group .btn-action {
+            background-color: rgba(255, 255, 255, 0.85);
+            border: 2px solid var(--navy-dark);
+            color: var(--navy-dark);
+            padding: 0.9rem 2rem;
+            font-size: 1.05rem;
+            backdrop-filter: blur(4px);
+            font-weight: 800;
+        }
+
+        .hero-cta-group .btn-action:hover {
+            background-color: var(--navy-dark);
+            color: var(--white);
+        }
+
+        /* Información de Inicio */
+        .home-info-block {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .home-info-block h3 {
+            font-size: 1.85rem;
+            color: var(--navy-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .home-info-block p {
+            font-size: 1.1rem;
+            color: #475569;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .home-info-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Grid Por qué elegirnos (Página Inicio) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* PÁGINA 2: ¿QUIÉNES SOMOS? */
+        .about-showcase {
+            background-color: var(--navy-dark);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow-hover);
+            color: var(--white);
+            padding: 4rem;
+        }
+
+        .about-header {
+            margin-bottom: 3.5rem;
+            max-width: 800px;
+        }
+
+        .about-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-header p {
+            font-size: 1.15rem;
+            line-height: 1.75;
+            color: #E2E8F0;
+        }
+
+        .about-grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-pillar {
+            margin-bottom: 2.5rem;
+        }
+
+        .about-pillar:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-pillar-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .about-pillar-title i {
+            color: var(--white);
+            font-size: 1.25rem;
+        }
+
+        .about-pillar p {
+            color: #CBD5E1;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* PÁGINA 3: NUESTROS SERVICIOS */
+        .services-hero-banner {
+            background: var(--navy-dark);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr; /* Texto izq, Imagen der (PC) */
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .services-banner-text {
+            padding: 2.75rem;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--navy-primary);
+        }
+
+        .services-banner-text h3 {
+            font-size: 1.85rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .services-banner-text p {
+            color: #E2E8F0;
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+
+        .normatividad-box {
+            background: rgba(0, 16, 46, 0.55);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.92rem;
+            color: var(--white);
+        }
+
+        .services-banner-img {
+            position: relative;
+            min-height: 360px;
+        }
+
+        .services-banner-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .services-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-item-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem 1.85rem;
+            box-shadow: var(--card-shadow);
+            border-top: 4px solid var(--navy-primary);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .service-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+            border-top-color: var(--navy-secondary);
+        }
+
+        .service-icon-box {
+            background: var(--navy-primary);
+            color: var(--white);
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-item-card h4 {
+            font-size: 1.15rem;
+            color: var(--navy-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .service-item-card p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        /* PÁGINA 4: NUESTROS CLIENTES */
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .client-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.75rem 1.5rem;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 180px;
+            border: 1px solid #E2E8F0;
+            transition: var(--transition);
+        }
+
+        .client-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+            border-color: var(--navy-primary);
+        }
+
+        .client-card img {
+            max-width: 85%;
+            max-height: 115px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .clients-bottom-banner {
+            background: linear-gradient(135deg, var(--navy-dark), var(--navy-primary));
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        .clients-bottom-banner h3 {
+            font-size: 1.65rem;
+            color: var(--white);
+            margin-bottom: 0.65rem;
+        }
+
+        .clients-bottom-banner p {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.08rem;
+            color: #E2E8F0;
+        }
+
+        /* PÁGINA 5: NUESTROS PROYECTOS */
+        .projects-intro-collage {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .intro-collage-item {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: var(--card-shadow);
+            border: 3px solid var(--navy-primary);
+        }
+
+        .intro-collage-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .intro-collage-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .intro-collage-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.25rem;
+            background: linear-gradient(to top, rgba(0, 16, 46, 0.94), transparent);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .projects-showcase-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+        }
+
+        .project-slide-card {
+            background: var(--navy-dark);
+            color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow-hover);
+            display: grid;
+            grid-template-columns: 0.65fr 1.35fr; /* Texto izq, Imagen/Grid der en PC */
+            border: 2px solid var(--navy-primary);
+        }
+
+        .project-details-pane {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            border-right: 4px solid var(--navy-secondary);
+        }
+
+        .project-details-pane h3 {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 0.85rem;
+            line-height: 1.25;
+            text-transform: uppercase;
+        }
+
+        .project-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.98rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-extra-note {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #E2E8F0;
+            margin-top: 0.5rem;
+            border-left: 3px solid var(--accent-blue);
+            line-height: 1.6;
+        }
+
+        /* Contenedores de Grid de Fotos para PC */
+        .project-mosaic {
+            display: grid;
+            gap: 5px;
+            background: var(--navy-dark);
+            padding: 5px;
+            min-height: 380px;
+        }
+
+        .project-mosaic a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .project-mosaic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-mosaic a:hover img {
+            transform: scale(1.05);
+        }
+
+        .mosaic-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .mosaic-3 {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 190px 190px;
+        }
+
+        .mosaic-3 .span-full {
+            grid-column: 1 / -1;
+        }
+
+        .mosaic-4 {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: 190px 190px;
+        }
+
+        .mosaic-6 {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 190px 190px;
+        }
+
+        /* Swiper / Slider Configuración Global (Solo visible en Móvil) */
+        .swiper {
+            width: 100%;
+            height: 100%;
+            background: var(--navy-dark);
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #000;
+        }
+        
+        .swiper-slide a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        
+        /* Controles Swiper (Flechas y Puntos) */
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--white) !important;
+            background: rgba(0, 0, 0, 0.4);
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50%;
+            backdrop-filter: blur(2px);
+        }
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.1rem !important;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet {
+            background: var(--white) !important;
+            opacity: 0.6 !important;
+        }
+        .swiper-pagination-bullet-active {
+            opacity: 1 !important;
+            background: var(--accent-blue) !important;
+            transform: scale(1.2);
+        }
+
+        /* PÁGINA 6: CONTACTO */
+        .contact-centered-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-info-card {
+            background: var(--navy-dark);
+            color: var(--white);
+            padding: 4rem;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow-hover);
+            border-top: 5px solid var(--navy-secondary);
+        }
+
+        .contact-info-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-info-card > p {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .engineers-directory {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .engineer-card {
+            background: var(--navy-primary);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .engineer-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+        }
+
+        .engineer-card h4 {
+            color: var(--accent-blue);
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .engineer-card p {
+            font-size: 1.05rem;
+            color: #E2E8F0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            word-break: break-all;
+        }
+
+        .engineer-card a {
+            color: #E2E8F0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .engineer-card a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .contact-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .contact-actions .btn-action {
+            padding: 1rem 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-solid-contacto {
+            background-color: var(--accent-blue);
+            color: var(--navy-dark);
+            border: 2px solid var(--accent-blue);
+        }
+        
+        .btn-solid-contacto:hover {
+            background-color: transparent;
+            color: var(--accent-blue);
+        }
+
+        .btn-outline-llamar {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline-llamar:hover {
+            background-color: var(--white);
+            color: var(--navy-dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--navy-dark);
+            color: var(--text-muted);
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Adaptabilidad */
+        @media (max-width: 1024px) {
+            .services-hero-banner,
+            .project-slide-card {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Ajuste para que el texto aparezca antes que la imagen (Tablet en vertical) */
+            .services-hero-banner {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .project-slide-card {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .project-details-pane {
+                border-right: none;
+                border-bottom: 4px solid var(--navy-secondary);
+            }
+
+            .clients-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .engineers-directory {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid-layout {
+                gap: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 0.85rem 0 0.35rem 0;
+                margin-top: 0.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.12);
+            }
+
+            .nav-links.show-menu {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.8rem 1rem;
+            }
+
+            /* Ajuste de Hero Foto en móvil para que no se corte tanto */
+            .hero {
+                background-size: cover;
+                background-position: top center;
+                padding: 5rem 1.5rem;
+            }
+
+            /* Clientes en móvil de 2 en 2 */
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+
+            .about-showcase {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .about-header h2 {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .about-header p {
+                text-align: center;
+            }
+
+            .about-grid-layout {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            
+            .about-pillar {
+                text-align: center;
+            }
+            
+            .about-pillar-title {
+                justify-content: center;
+            }
+
+            .services-banner-text,
+            .project-details-pane,
+            .contact-info-card,
+            .engineer-card,
+            .footer-container {
+                text-align: center;
+            }
+
+            .project-location,
+            .engineer-card h4,
+            .engineer-card p {
+                justify-content: center;
+            }
+            
+            .contact-info-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .projects-intro-collage {
+                grid-template-columns: 1fr;
+            }
+            
+            .swiper {
+                min-height: 280px;
+                padding: 0; 
+            }
+
+            /* Controles Slider en Móvil visibles */
+            .swiper-button-next, .swiper-button-prev, .swiper-pagination {
+                display: flex !important;
+            }
+            
+            /* Asegurar orden en móvil: Texto arriba, Imagen/Slider abajo y pegado */
+            .services-hero-banner {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .project-slide-card {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .project-details-pane {
+                border-right: none;
+                border-bottom: none; 
+            }
+
+            /* Botones Horizontales en Móvil */
+            .hero-cta-group {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 0.75rem;
+                width: 100%;
+            }
+
+            .hero-cta-group .btn-action {
+                flex: 1;
+                padding: 0.85rem 0.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .contact-actions {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 0.75rem;
+                width: 100%;
+            }
+            .contact-actions .btn-action {
+                flex: 1;
+                padding: 0.85rem 0.5rem;
+                font-size: 0.95rem;
+                margin-top: 0;
+            }
+        }
+
+        /* Ocultar elementos de slider en PC */
+        @media (min-width: 769px) {
+            .swiper-button-next, .swiper-button-prev, .swiper-pagination {
+                display: none !important;
+            }
+            
+            /* Restablecer layout para pantallas grandes */
+            .services-hero-banner {
+                display: grid;
+                grid-template-columns: 0.9fr 1.1fr; /* Texto izq, Imagen der */
+            }
+            
+            .project-slide-card {
+                display: grid;
+                grid-template-columns: 0.65fr 1.35fr; /* Texto izq, Imagen der */
+            }
+        }
+
+        @media (max-width: 420px) {
+            html {
+                font-size: 14px;
+            }
+
+            .section-container {
+                padding: 3rem 1rem;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+            }
+
+            .home-info-block {
+                padding: 2rem 1.5rem;
+            }
+
+            .services-list-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <nav class="nav-container" aria-label="Navegación Principal">
+            <a href="#inicio" class="logo" onclick="openPage('inicio'); return false;">
+                <img src="logo.jpeg" alt="Seltos Ingeniería">
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><button class="nav-btn active" data-target="inicio" onclick="openPage('inicio')"><i class="fa-solid fa-house"></i> Inicio</button></li>
+                <li><button class="nav-btn" data-target="nosotros" onclick="openPage('nosotros')"><i class="fa-solid fa-building-shield"></i> ¿Quiénes Somos?</button></li>
+                <li><button class="nav-btn" data-target="servicios" onclick="openPage('servicios')"><i class="fa-solid fa-gears"></i> Nuestros Servicios</button></li>
+                <li><button class="nav-btn" data-target="clientes" onclick="openPage('clientes')"><i class="fa-solid fa-handshake"></i> Clientes</button></li>
+                <li><button class="nav-btn" data-target="proyectos" onclick="openPage('proyectos')"><i class="fa-solid fa-helmet-safety"></i> Proyectos</button></li>
+                <li><button class="nav-btn" data-target="contacto" onclick="openPage('contacto')"><i class="fa-solid fa-address-book"></i> Contacto</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ==================== PÁGINA 1: INICIO ==================== -->
+        <section id="page-inicio" class="page-view active-page">
+            <div class="hero">
+                <div class="hero-inner reveal-item">
+                    <h1>
+                        SELTOS
+                        <span>INGENIERÍA</span>
+                    </h1>
+                    <p class="hero-lead">
+                        Compañía constructora con sede en la ciudad de Querétaro y presencia en toda la República Mexicana. Especialistas en ingeniería civil, obras de urbanización, redes de gas natural, gas LP, perforación direccional y proyectos eléctricos de alta y media tensión.
+                    </p>
+                    <div class="hero-cta-group">
+                        <button class="btn-action" onclick="openPage('contacto')">
+                            <i class="fa-brands fa-whatsapp"></i> Contacto
+                        </button>
+                        <a href="tel:4422023910" class="btn-action">
+                            <i class="fa-solid fa-phone"></i> Llamar
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="home-info-block reveal-item">
+                    <h3>Soluciones Integrales para la Industria y Urbanización</h3>
+                    <p>Con más de dos décadas de trayectoria, <strong>Seltos Ingeniería</strong> destaca por su capacidad técnica y operativa en todo el país. Nuestro compromiso es entregar obras de alta calidad, cumpliendo rigurosamente con las normativas vigentes en seguridad e ingeniería.</p>
+                    <p>Garantizamos la máxima seguridad y eficiencia en instalaciones industriales, comerciales y residenciales, respaldados por personal calificado y acreditado para la emisión de dictámenes normativos oficiales en líneas de gas LP y gas natural.</p>
+                </div>
+
+                <!-- ¿Por qué elegir trabajar con SELTOS? -->
+                <div class="section-header reveal-item" style="margin-top: 5rem;">
+                    <h2 class="section-title">¿Por qué elegir trabajar con SELTOS?</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="about-pillar reveal-item" style="background: var(--navy-dark); padding: 1.5rem; border-radius: 12px; border-bottom: 4px solid var(--navy-primary); margin-bottom: 0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="background: var(--navy-primary); color: var(--white); width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <h4 style="color: var(--white); margin-bottom: 0; text-align: left; font-size: 1.15rem;">Rigor y Cumplimiento Normativo</h4>
+                        </div>
+                        <p style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.7; text-align: left; margin: 0;">Ejecutamos cada instalación bajo la normatividad vigente y con personal debidamente calificado y acreditado. Realizamos dictámenes oficiales para líneas de gas natural y gas LP, así como pruebas de hermeticidad neumáticas e hidráulicas con presiones de hasta 420 kg/cm², garantizando carpetas técnicas seguras y listas para entrega.</p>
+                    </div>
+                    <div class="about-pillar reveal-item" style="background: var(--navy-dark); padding: 1.5rem; border-radius: 12px; border-bottom: 4px solid var(--navy-primary); margin-bottom: 0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="background: var(--navy-primary); color: var(--white); width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-mountain-city"></i>
+                            </div>
+                            <h4 style="color: var(--white); margin-bottom: 0; text-align: left; font-size: 1.15rem;">Capacidad Especializada en Terrenos Complejos</h4>
+                        </div>
+                        <p style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.7; text-align: left; margin: 0;">Contamos con equipo para perforación direccional de 2 a 48 pulgadas de diámetro con capacidad de operación en terreno rocoso tipo 2 y 3 característico de la zona de Querétaro. Esta tecnología permite ejecutar cruces subterráneos bajo carreteras e infraestructura sin necesidad de zanjas superficiales abiertas.</p>
+                    </div>
+                    <div class="about-pillar reveal-item" style="background: var(--navy-dark); padding: 1.5rem; border-radius: 12px; border-bottom: 4px solid var(--navy-primary); margin-bottom: 0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="background: var(--navy-primary); color: var(--white); width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <h4 style="color: var(--white); margin-bottom: 0; text-align: left; font-size: 1.15rem;">Solvencia Operativa en Entornos Industriales Activos</h4>
+                        </div>
+                        <p style="color: #CBD5E1; font-size: 0.95rem; line-height: 1.7; text-align: left; margin: 0;">Trabajamos dentro de plantas industriales y complejos en operación continua respetando rigurosos controles de seguridad en montajes internos, zanjado y tendido de líneas de gas. Esta experiencia se refleja en proyectos como naves para Pilgrim's, instalaciones de Química Amtex o casetas de regulación para DANA.</p>
+                    </div>
+                </div>
+
+                <!-- Sectores que Atendemos -->
+                <div class="section-header reveal-item" style="margin-top: 5rem;">
+                    <h2 class="section-title">Sectores que Atendemos</h2>
+                    <p class="section-subtitle">Desarrollamos soluciones de ingeniería adaptadas a las exigencias operativas y regulatorias de cada entorno de trabajo.</p>
+                </div>
+                <div class="services-list-grid">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-industry"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Sector Industrial y Manufactura</h4>
+                        </div>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Redes de suministro energético, plantas de compresión, naves de producción y líneas de proceso en acero y polietileno.</p>
+                    </div>
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-city"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Desarrollos Inmobiliarios y Urbanos</h4>
+                        </div>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Infraestructura subterránea oculta para fraccionamientos residenciales, edificación vertical en torres de departamentos y urbanización general.</p>
+                    </div>
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-road"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Infraestructura Pública y Carretera</h4>
+                        </div>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Cruces direccionales en vías de alta velocidad, interconexiones hidráulicas, colectores de drenaje y cruces de derechos de vía.</p>
+                    </div>
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Sector Agroindustrial</h4>
+                        </div>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Sistemas de aprovechamiento y distribución de gas para invernaderos, control de temperatura y agroindustria.</p>
+                    </div>
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-hotel"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Comercial y Hospitalidad</h4>
+                        </div>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Instalaciones técnicas de gas y energía para complejos turísticos, plazas comerciales y centros de servicio.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA 2: ¿QUIÉNES SOMOS? ==================== -->
+        <section id="page-nosotros" class="page-view">
+            <div class="section-container">
+                <div class="about-showcase reveal-item">
+                    
+                    <div class="about-header">
+                        <h2>¿QUIÉNES SOMOS?</h2>
+                        <p>
+                            <strong>Somos</strong> una compañía constructora sede de la ciudad de Querétaro, con presencia en toda la República Mexicana. Contamos con diversos servicios, entre ellos: Ingeniería civil, construcción de obras de urbanización y generales.
+                        </p>
+                    </div>
+
+                    <div class="about-grid-layout">
+                        <!-- Columna Izquierda -->
+                        <div>
+                            <div class="about-pillar">
+                                <div class="about-pillar-title">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Calidad</span>
+                                </div>
+                                <p>
+                                    Estamos comprometidos e involucrados en satisfacer plenamente las necesidades y/o expectativas de nuestros clientes, a través de la mejora continua, capacitación y desarrollo de personal, con tecnología adecuada que nos permita tener mejor participación en el mercado.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Columna Derecha -->
+                        <div>
+                            <div class="about-pillar">
+                                <div class="about-pillar-title">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Misión</span>
+                                </div>
+                                <p>
+                                    Brindar un servicio de calidad, adaptándonos a las necesidades de nuestros clientes y sus proyectos, superando sus expectativas.
+                                </p>
+                            </div>
+
+                            <div class="about-pillar">
+                                <div class="about-pillar-title">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>Visión</span>
+                                </div>
+                                <p>
+                                    Ser líder en brindar servicios de construcción y redes de gas natural en Querétaro, destacándonos por nuestra excelente atención a cliente y precios competitivos.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA 3: NUESTROS SERVICIOS ==================== -->
+        <section id="page-servicios" class="page-view">
+            <div class="section-container">
+                <div class="section-header reveal-item">
+                    <h2 class="section-title">NUESTROS SERVICIOS</h2>
+                    <p class="section-subtitle">Soluciones integrales de canalización, gas natural, gas LP, perforación direccional y obra civil bajo normatividad vigente.</p>
+                </div>
+
+                <div class="services-hero-banner reveal-item">
+                    <!-- Text first -->
+                    <div class="services-banner-text">
+                        <h3>Personal Calificado y Acreditado</h3>
+                        <p>
+                            Todos los trabajos son con personal calificado y acreditado para la realización de los mismos y trabajando con la normatividad vigente en los distintos rubros.
+                        </p>
+                        <div class="normatividad-box">
+                            <i class="fa-solid fa-file-shield" style="color: var(--accent-blue); margin-right: 0.4rem;"></i>
+                            <strong>Dictámenes Oficiales:</strong> Dictámenes de línea de gas LP y gas natural conforme a la norma.
+                        </div>
+                    </div>
+                    <!-- Image second -->
+                    <div class="services-banner-img">
+                        <img src="nuestrosservicios.png" alt="Excavadora en zanja de tubería">
+                    </div>
+                </div>
+
+                <div class="services-list-grid">
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-faucet-drip"></i>
+                        </div>
+                        <h4>Canalización de Redes</h4>
+                        <p>Canalización de redes gas, agua, drenaje, fibra óptica y eléctricas, en los distintos materiales: Acero al carbón, Acero inoxidable, Polietileno, PVC, CPVC y encamisados.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-fire-flame-simple"></i>
+                        </div>
+                        <h4>Instalaciones de Gas Natural y Gas LP</h4>
+                        <p>Instalaciones Industriales, comerciales y residenciales de gas natural y gas LP adaptadas a los requerimientos de cada proyecto.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h4>Proyectos Eléctricos</h4>
+                        <p>Proyectos eléctricos alta y media tensión para comercios e industrias con estricto apego a las normas técnicas.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <h4>Pruebas de Hermeticidad</h4>
+                        <p>Pruebas de hermeticidad neumáticas e hidráulicas hasta <strong>420 kg/cm²</strong> con equipos calibrados y certificados.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-temperature-arrow-up"></i>
+                        </div>
+                        <h4>Soldadura Termo y Electrofusión</h4>
+                        <p>Soldadura termo y electro fusión de polietileno de alta y baja densidad ejecutada por técnicos especialistas.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-bore-hole"></i>
+                        </div>
+                        <h4>Perforaciones Direccionales (2" a 48")</h4>
+                        <p>Direccionales de 2 hasta 48" en terreno tipo (2 y 3 Rocoso en la zona de Querétaro) y cruces carreteros o ferroviarios.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+                        <h4>Venta de Materiales</h4>
+                        <p>Venta de materiales de acero al carbón y polietileno para distintos usos industriales, comerciales y de urbanización.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-spray-can-sparkles"></i>
+                        </div>
+                        <h4>Sandblasteado y Recubrimientos</h4>
+                        <p>Sandblasteado y recubrimientos para tuberías garantizando máxima protección anticorrosiva y durabilidad operativa.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item">
+                        <div class="service-icon-box">
+                            <i class="fa-solid fa-clipboard-check"></i>
+                        </div>
+                        <h4>Dictámenes Normativos</h4>
+                        <p>Dictámenes de línea de gas LP y gas natural conforme a la norma vigente con personal acreditado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA 4: NUESTROS CLIENTES ==================== -->
+        <section id="page-clientes" class="page-view">
+            <div class="section-container">
+                <div class="section-header reveal-item">
+                    <h2 class="section-title">ALGUNOS DE NUESTROS CLIENTES</h2>
+                </div>
+
+                <div class="clients-grid">
+                    <div class="client-card reveal-item"><img src="2.jpg" alt="DANA"></div>
+                    <div class="client-card reveal-item"><img src="3.jpg" alt="KERRY"></div>
+                    <div class="client-card reveal-item"><img src="4.jpg" alt="Pilgrim's"></div>
+                    <div class="client-card reveal-item"><img src="5.jpg" alt="MaxiGas Natural"></div>
+                    <div class="client-card reveal-item"><img src="6.jpg" alt="AlEn"></div>
+                    <div class="client-card reveal-item"><img src="7.jpg" alt="Alpura"></div>
+                    <div class="client-card reveal-item"><img src="8.jpg" alt="ENGIE"></div>
+                    <div class="client-card reveal-item"><img src="9.jpg" alt="Amtex"></div>
+                    <div class="client-card reveal-item"><img src="10.jpg" alt="Kellanova"></div>
+                    <div class="client-card reveal-item"><img src="11.jpg" alt="AQUA Resorts & Residence Club"></div>
+                    <div class="client-card reveal-item"><img src="12.jpg" alt="Kimberly-Clark"></div>
+                    <div class="client-card reveal-item"><img src="13.jpg" alt="Grupo Vialli"></div>
+                </div>
+
+                <div class="clients-bottom-banner reveal-item">
+                    <span class="section-badge" style="background-color: rgba(255,255,255,0.1); color: var(--white); border-color: var(--accent-blue);">Alianzas Estratégicas</span>
+                    <h3>"El cliente es el centro de todo lo que hacemos."</h3>
+                    <p>Nos esforzamos por brindar una atención cercana y soluciones que realmente ayuden.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA 5: NUESTROS PROYECTOS ==================== -->
+        <section id="page-proyectos" class="page-view">
+            <div class="section-container">
+                <div class="section-header reveal-item">
+                    <h2 class="section-title">ALGUNOS DE NUESTROS PROYECTOS</h2>
+                </div>
+
+                <div class="projects-intro-collage reveal-item">
+                    <div class="intro-collage-item">
+                        <img src="supervisiontecnicaydireccion.jpg" alt="Ingenieros supervisando obra en campo">
+                        <div class="intro-collage-caption">Supervisión Técnica y Dirección de Proyectos en Campo</div>
+                    </div>
+                    <div class="intro-collage-item">
+                        <img src="maquinariaespecializada.jpg" alt="Maquinaria pesada tiendetubos izando tubería">
+                        <div class="intro-collage-caption">Maquinaria Especializada y Tendido de Líneas de Conducción</div>
+                    </div>
+                </div>
+
+                <div class="projects-showcase-list">
+                    <!-- PROYECTO 1 -->
+                    <article class="project-slide-card reveal-item">
+                        <!-- Text first -->
+                        <div class="project-details-pane">
+                            <h3>CONSTRUCCIÓN DE NAVE INDUSTRIAL</h3>
+                            <div class="project-location"><i class="fa-solid fa-location-dot"></i> Pilgrim's - San Luis</div>
+                            <div class="project-extra-note">Ejecución de obra civil, montaje de structure metálica, muros interiores y adecuación integral de nave industrial para Pilgrim's.</div>
+                        </div>
+                        <!-- Swiper Element / PC Grid -->
+                        <div class="swiper mySwiper" data-slides="4">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="naveindustrial1.jpg" data-fancybox="gallery-p1"><img src="naveindustrial1.jpg" alt="Transporte de estructura metálica Pilgrim's"></a></div>
+                                <div class="swiper-slide"><a href="naveindustrial2.jpg" data-fancybox="gallery-p1"><img src="naveindustrial2.jpg" alt="Construcción interior nave industrial"></a></div>
+                                <div class="swiper-slide"><a href="naveindustrial3.jpg" data-fancybox="gallery-p1"><img src="naveindustrial3.jpg" alt="Estructura y columnas nave industrial"></a></div>
+                                <div class="swiper-slide"><a href="naveindustrial4.jpg" data-fancybox="gallery-p1"><img src="naveindustrial4.jpg" alt="Montaje estructural en planta Pilgrim's"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 2 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>APOYO EN CONSTRUCCIÓN Y DISEÑO DE PLANTA COMPRESIÓN DE GAS NATURAL</h3>
+                            <div class="project-location"><i class="fa-solid fa-location-dot"></i> Villagrán - Guanajuato</div>
+                            <div class="project-extra-note">Ingeniería de detalle, canalización en trinchera, trenes de regulación e interconexiones mecánicas para planta de compresión.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="gasnatural1.jpg" data-fancybox="gallery-p2"><img src="gasnatural1.jpg" alt="Tuberías verticales con abrazaderas"></a></div>
+                                <div class="swiper-slide"><a href="gasnatural2.jpg" data-fancybox="gallery-p2"><img src="gasnatural2.jpg" alt="Estación de regulación y válvulas de compresión"></a></div>
+                                <div class="swiper-slide"><a href="gasnatural3.jpg" data-fancybox="gallery-p2"><img src="gasnatural3.jpg" alt="Zanja profunda con tubería de gran diámetro y armado de acero"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 3 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>LÍNEA 3 KM ZANJADORA, INTERNA DANA. CASETA DE REGULACIÓN PILGRIM'S</h3>
+                            <div class="project-location"><i class="fa-solid fa-industry"></i> DANA &amp; Pilgrim's</div>
+                            <div class="project-extra-note">Tendido de 3 kilómetros con equipo de zanjeo, red interna industrial para DANA y construcción de caseta de regulación para Pilgrim's.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="4">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="linea3km1.jpg" data-fancybox="gallery-p3"><img src="linea3km1.jpg" alt="Caseta techada de regulación"></a></div>
+                                <div class="swiper-slide"><a href="linea3km2.jpg" data-fancybox="gallery-p3"><img src="linea3km2.jpg" alt="Revisión de planos de ingeniería y casco amarillo"></a></div>
+                                <div class="swiper-slide"><a href="linea3km3.jpg" data-fancybox="gallery-p3"><img src="linea3km3.jpg" alt="Tren de válvulas amarillas de regulación de gas"></a></div>
+                                <div class="swiper-slide"><a href="linea3km4.jpg" data-fancybox="gallery-p3"><img src="linea3km4.jpg" alt="Maquinaria zanjadora trabajando en vialidad"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 4 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>DIRECCIONAL 24" CRUCE DE Y CRUCE DE 4" PARA GNI</h3>
+                            <div class="project-location"><i class="fa-solid fa-road"></i> México-Toluca Huixquilucan</div>
+                            <div class="project-extra-note"><strong>CONTAMOS CON DIRECCIONALES DE HASTA 48" EN ROCA.</strong> Ejecución de cruces dirigidos sin afectar la superficie de rodamiento.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="direccional1.jpg" data-fancybox="gallery-p4"><img src="direccional1.jpg" alt="Equipo de perforación direccional en operación"></a></div>
+                                <div class="swiper-slide"><a href="direccional2.jpg" data-fancybox="gallery-p4"><img src="direccional2.jpg" alt="Maquinaria de perforación horizontal dirigida"></a></div>
+                                <div class="swiper-slide"><a href="direccional3.jpg" data-fancybox="gallery-p4"><img src="direccional3.jpg" alt="Cruce carretero México-Toluca"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 5 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>LÍNEA DE 6KM ARROYO HONDO CEA</h3>
+                            <div class="project-location"><i class="fa-solid fa-location-dot"></i> Querétaro</div>
+                            <div class="project-extra-note">Construcción de línea de conducción de 6 kilómetros para la Comisión Estatal de Aguas (CEA) en Querétaro, incluyendo soldadura especializada y pruebas.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="6">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="linea6km1.jpg" data-fancybox="gallery-p5"><img src="linea6km1.jpg" alt="Acueducto y tubería de gran diámetro sobre soportes"></a></div>
+                                <div class="swiper-slide"><a href="linea6km2.jpg" data-fancybox="gallery-p5"><img src="linea6km2.jpg" alt="Técnico operando válvulas e instrumentación"></a></div>
+                                <div class="swiper-slide"><a href="linea6km3.jpg" data-fancybox="gallery-p5"><img src="linea6km3.jpg" alt="Soldador especializado en tubería"></a></div>
+                                <div class="swiper-slide"><a href="linea6km4.jpg" data-fancybox="gallery-p5"><img src="linea6km4.jpg" alt="Excavación de línea de 6 km"></a></div>
+                                <div class="swiper-slide"><a href="linea6km5.jpg" data-fancybox="gallery-p5"><img src="linea6km5.jpg" alt="Termofusión y unión de línea"></a></div>
+                                <div class="swiper-slide"><a href="linea6km6.jpg" data-fancybox="gallery-p5"><img src="linea6km6.jpg" alt="Inspección de recubrimiento en tubería"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 6 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>LÍNEA INTERNA GAS NATURAL Y MOVIMIENTO DE CONTENEDORES</h3>
+                            <div class="project-location"><i class="fa-solid fa-location-dot"></i> QUÍMICA AMTEX TOLUCA</div>
+                            <div class="project-extra-note">Instalación de red interna de gas natural y maniobras mecánicas para movimiento de contenedores de proceso en planta Toluca.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="lineainternagas1.jpg" data-fancybox="gallery-p6"><img src="lineainternagas1.jpg" alt="Tolvas y contenedores industriales Química Amtex"></a></div> 
+                                <div class="swiper-slide"><a href="lineainternagas2.jpg" data-fancybox="gallery-p6"><img src="lineainternagas2.jpg" alt="Estructura de proceso y tuberías"></a></div>
+                                <div class="swiper-slide"><a href="lineainternagas3.jpg" data-fancybox="gallery-p6"><img src="lineainternagas3.jpg" alt="Personal en pasillo industrial"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 7 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>LÍNEA INTERNA GAS LP EN INVERNADERO</h3>
+                            <div class="project-location"><i class="fa-solid fa-location-dot"></i> Querétaro</div>
+                            <div class="project-extra-note">Tendido de línea de alimentación de Gas LP, interconexión a tanque estacionario y trenes de válvulas para climatización de invernadero.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="lineainterna1.jpg" data-fancybox="gallery-p7"><img src="lineainterna1.jpg" alt="Interior de nave de invernadero agrícola"></a></div>
+                                <div class="swiper-slide"><a href="lineainterna2.jpg" data-fancybox="gallery-p7"><img src="lineainterna2.jpg" alt="Tanque de almacenamiento de Gas LP con tubería amarilla"></a></div>
+                                <div class="swiper-slide"><a href="lineainterna3.jpg" data-fancybox="gallery-p7"><img src="lineainterna3.jpg" alt="Válvulas y conexión a equipos de calefacción de invernadero"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 8 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>INSTALACIÓN DE GAS LP - TORRE A Y B 20 NIV. C/U</h3>
+                            <div class="project-location"><i class="fa-solid fa-building"></i> TORRE MONTEBELLO</div>
+                            <div class="project-extra-note">Red vertical e instalaciones individuales de Gas LP para las Torres A y B de 20 niveles cada una en el desarrollo Torre Montebello.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="instalaciondegaslp1.jpg" data-fancybox="gallery-p8"><img src="instalaciondegaslp1.jpg" alt="Reguladores y medidores de gas en edificio"></a></div>
+                                <div class="swiper-slide"><a href="instalaciondegaslp2.jpg" data-fancybox="gallery-p8"><img src="instalaciondegaslp2.jpg" alt="Canalización de tubería por losa y muros"></a></div>
+                                <div class="swiper-slide"><a href="instalaciondegaslp3.jpg" data-fancybox="gallery-p8"><img src="instalaciondegaslp3.jpg" alt="Instalación en niveles residenciales Torre Montebello"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 9 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>CONSTRUCCIÓN DIRECCIONALES DE 16" Y 4" CON REGISTROS Y DRENAJES EN ACERO AL CARBÓN DIRECCIONADO</h3>
+                            <div class="project-location"><i class="fa-solid fa-city"></i> "FRACCIONAMIENTO ZIRÉ" PARA GRUPO VIALLI</div>
+                            <div class="project-extra-note">Perforaciones direccionales de 16" y 4", construcción de cajas de registro cimbradas y drenajes en tubería de acero al carbón direccionado.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="registrosydrenajes1.jpg" data-fancybox="gallery-p9"><img src="registrosydrenajes1.jpg" alt="Cruce de tubería de acero en excavación"></a></div>
+                                <div class="swiper-slide"><a href="registrosydrenajes2.jpg" data-fancybox="gallery-p9"><img src="registrosydrenajes2.jpg" alt="Trabajos nocturnos en zanja en roca"></a></div>
+                                <div class="swiper-slide"><a href="registrosydrenajes3.jpg" data-fancybox="gallery-p9"><img src="registrosydrenajes3.jpg" alt="Cimbra de madera para registro y tubería corrugada"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 10 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>3 CONSTRUYENDO S.A. DE C.V. — CONSTRUCCIÓN DIRECCIONAL DE 24" EN ACCESO 2</h3>
+                            <div class="project-location"><i class="fa-solid fa-location-dot"></i> Querétaro</div>
+                            <div class="project-extra-note">Suministro, alineación e introducción de tubería mediante perforación direccional de 24 pulgadas en Acceso 2, Querétaro.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="construcciondireccional1.jpg" data-fancybox="gallery-p10"><img src="construcciondireccional1.jpg" alt="Zanja estrecha junto a tubería de 24 pulgadas"></a></div>
+                                <div class="swiper-slide"><a href="construcciondireccional2.jpg" data-fancybox="gallery-p10"><img src="construcciondireccional2.jpg" alt="Cabezal de perforación direccional en trinchera"></a></div>
+                                <div class="swiper-slide"><a href="construcciondireccional3.jpg" data-fancybox="gallery-p10"><img src="construcciondireccional3.jpg" alt="Alineación de tubería de 24 pulgadas en Acceso 2 Querétaro"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                    <!-- PROYECTO 11 -->
+                    <article class="project-slide-card reveal-item">
+                        <div class="project-details-pane">
+                            <h3>GRUPO SIMCO S.A. DE C.V. NUEVO REFUGIO</h3>
+                            <div class="project-location"><i class="fa-solid fa-location-dot"></i> Querétaro</div>
+                            <div class="project-extra-note">Canalización, ademado de zanja y tendido de línea de conducción en la zona de Nuevo Refugio, Querétaro, para Grupo Simco S.A. de C.V.</div>
+                        </div>
+                        <div class="swiper mySwiper" data-slides="2">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><a href="gruposimco1.jpg" data-fancybox="gallery-p11"><img src="gruposimco1.jpg" alt="Cuadrilla trabajando en zanja ademada con tubería"></a></div>
+                                <div class="swiper-slide"><a href="gruposimco2.jpg" data-fancybox="gallery-p11"><img src="gruposimco2.jpg" alt="Detalle de tubería instalada sobre soportes en zanja"></a></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PÁGINA 6: CONTACTO ==================== -->
+        <section id="page-contacto" class="page-view">
+            <div class="section-container">
+                <div class="contact-centered-wrapper">
+                    <div class="contact-info-card reveal-item">
+                        <h3>Canales de Comunicación</h3>
+                        <p>Comuníquese directamente con nuestro equipo de ingeniería por correo electrónico.</p>
+
+                        <div class="engineers-directory">
+                            <!-- Ingeniero Carlos Contreras -->
+                            <div class="engineer-card">
+                                <h4><i class="fa-solid fa-user-gear"></i> Ing. Carlos Contreras</h4>
+                                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:kubika.contreras@live.com">kubika.contreras@live.com</a></p>
+                            </div>
+
+                            <!-- Ingeniero José Cosme -->
+                            <div class="engineer-card">
+                                <h4><i class="fa-solid fa-user-tie"></i> Ing. José Cosme</h4>
+                                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:kubika.cosme@live.com.mx">kubika.cosme@live.com.mx</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-actions">
+                            <a href="https://wa.me/524422023910" target="_blank" class="btn-action btn-solid-contacto">
+                                <i class="fa-brands fa-whatsapp"></i> Contacto
+                            </a>
+                            <a href="tel:4422023910" class="btn-action btn-outline-llamar">
+                                <i class="fa-solid fa-phone"></i> Llamar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <div class="footer-container">
+            <strong class="brand-font" style="color: var(--white);">SELTOS INGENIERÍA</strong>
+            <p style="font-size: 0.85rem; margin-top: 0.25rem;">Fray Martín de Porres 10, Col. Felipe Carrillo Puerto, C.P. 76138, Querétaro, Qro. | Tel: 442 202 3910</p>
+        </div>
+    </footer>
+
+    <!-- Swiper JS & Fancybox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    
+    <script>
+        // Inicializar Fancybox para visualización a pantalla completa
+        Fancybox.bind("[data-fancybox]", {
+          // Opciones de Fancybox si se requieren
+        });
+
+        // Inicializar Swipers para las galerías de proyectos
+        let swipers = [];
+
+        function initSwipers() {
+            const isMobile = window.innerWidth <= 768;
+            
+            // Destruir instancias previas si existen (al redimensionar)
+            if(swipers.length > 0) {
+                swipers.forEach(s => s.destroy(true, true));
+                swipers = [];
+            }
+
+            const swiperContainers = document.querySelectorAll('.mySwiper');
+            
+            swiperContainers.forEach((container) => {
+                const slidesCount = parseInt(container.getAttribute('data-slides'));
+                
+                // Limpiar grid clases previas
+                container.classList.remove('mosaic-2', 'mosaic-3', 'mosaic-4', 'mosaic-6');
+                const slides = container.querySelectorAll('.swiper-slide');
+                slides.forEach(slide => slide.classList.remove('span-full'));
+
+                if (isMobile) {
+                    // Modo Móvil: Slider
+                    container.style.display = 'block';
+                    container.classList.remove('project-mosaic');
+                    container.querySelector('.swiper-wrapper').style.display = 'flex';
+                    
+                    const swiper = new Swiper(container, {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        loop: true,
+                        autoplay: {
+                            delay: 3500,
+                            disableOnInteraction: false,
+                        },
+                        navigation: {
+                            nextEl: container.querySelector('.swiper-button-next'),
+                            prevEl: container.querySelector('.swiper-button-prev'),
+                        },
+                        pagination: {
+                            el: container.querySelector('.swiper-pagination'),
+                            clickable: true,
+                        },
+                    });
+                    swipers.push(swiper);
+                } else {
+                    // Modo PC: Grid (Destruir slider y aplicar clases CSS Grid)
+                    container.style.display = 'grid';
+                    container.classList.add('project-mosaic');
+                    container.querySelector('.swiper-wrapper').style.display = 'contents';
+                    
+                    if(slidesCount === 2) {
+                        container.classList.add('mosaic-2');
+                    } else if (slidesCount === 3) {
+                        container.classList.add('mosaic-3');
+                        slides[2].classList.add('span-full');
+                    } else if (slidesCount === 4) {
+                        container.classList.add('mosaic-4');
+                    } else if (slidesCount === 6) {
+                        container.classList.add('mosaic-6');
+                    }
+                }
+            });
+        }
+
+        // Navegación
+        function openPage(pageKey) {
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active-page'));
+
+            const targetPage = document.getElementById('page-' + pageKey);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                if (btn.getAttribute('data-target') === pageKey) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks.classList.contains('show-menu')) {
+                navLinks.classList.remove('show-menu');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            observeRevealElements();
+            
+            // Reiniciar autoplay si entramos a la página de proyectos en móvil
+            if(pageKey === 'proyectos' && window.innerWidth <= 768) {
+                swipers.forEach(s => {
+                    s.autoplay.start();
+                });
+            }
+        }
+
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            document.getElementById('navLinks').classList.toggle('show-menu');
+        });
+
+        const seenElements = new WeakSet();
+        let revealObserver;
+
+        function observeRevealElements() {
+            const activeItems = document.querySelectorAll('.page-view.active-page .reveal-item');
+            activeItems.forEach((el, index) => {
+                if (!seenElements.has(el)) {
+                    el.style.transitionDelay = (index % 4) * 90 + 'ms';
+                    revealObserver.observe(el);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !seenElements.has(entry.target)) {
+                        entry.target.classList.add('revealed');
+                        seenElements.add(entry.target);
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -30px 0px'
+            });
+
+            observeRevealElements();
+            initSwipers();
+        });
+
+        window.addEventListener('resize', () => {
+            // Pequeño debounce para no recargar en cada pixel de resize
+            clearTimeout(window.resizeTimer);
+            window.resizeTimer = setTimeout(initSwipers, 250);
+        });
+    </script>
+</body>
+</html>
