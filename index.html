@@ -157,6 +157,18 @@
             border: 1px solid transparent;
         }
 
+        /* Botón estilo contorno blanco */
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--navy-dark);
+        }
+
         /* Sistema de Páginas */
         main {
             flex: 1;
@@ -869,28 +881,6 @@
             font-size: 1.05rem;
         }
 
-        .btn-solid-contacto {
-            background-color: var(--accent-blue);
-            color: var(--navy-dark);
-            border: 2px solid var(--accent-blue);
-        }
-        
-        .btn-solid-contacto:hover {
-            background-color: transparent;
-            color: var(--accent-blue);
-        }
-
-        .btn-outline-llamar {
-            background-color: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-
-        .btn-outline-llamar:hover {
-            background-color: var(--white);
-            color: var(--navy-dark);
-        }
-
         /* Footer */
         footer {
             background-color: var(--navy-dark);
@@ -1070,7 +1060,7 @@
                 border-bottom: none; 
             }
 
-            /* Botones Horizontales en Móvil */
+            /* Botones Horizontales en Móvil (Hero) */
             .hero-cta-group {
                 flex-direction: row;
                 flex-wrap: nowrap;
@@ -1084,17 +1074,27 @@
                 font-size: 0.95rem;
             }
             
+            /* Botones Horizontales en Móvil (Contacto) - Envuelve fluidamente */
             .contact-actions {
                 flex-direction: row;
-                flex-wrap: nowrap;
-                gap: 0.75rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
                 width: 100%;
             }
             .contact-actions .btn-action {
-                flex: 1;
-                padding: 0.85rem 0.5rem;
-                font-size: 0.95rem;
+                flex: 1 1 calc(33.333% - 0.5rem);
+                padding: 0.75rem 0.2rem;
+                font-size: 0.85rem;
                 margin-top: 0;
+                min-width: 90px;
+            }
+            
+            /* Ajuste de íconos y títulos en Sectores y Por qué Elegirnos para móvil (ALINEAR A LA IZQUIERDA) */
+            .features-grid .about-pillar-title {
+                justify-content: flex-start !important;
+            }
+            .services-list-grid .service-item-card h4 {
+                text-align: left !important;
             }
         }
 
@@ -1113,6 +1113,15 @@
             .project-slide-card {
                 display: grid;
                 grid-template-columns: 0.65fr 1.35fr; /* Texto izq, Imagen der */
+            }
+            
+            /* Alineación a la izquierda en PC para Sectores y Elegirnos */
+            .features-grid .about-pillar-title {
+                justify-content: flex-start;
+            }
+            .services-list-grid .service-item-card {
+                align-items: flex-start;
+                text-align: left;
             }
         }
 
@@ -1177,10 +1186,10 @@
                         Compañía constructora con sede en la ciudad de Querétaro y presencia en toda la República Mexicana. Especialistas en ingeniería civil, obras de urbanización, redes de gas natural, gas LP, perforación direccional y proyectos eléctricos de alta y media tensión.
                     </p>
                     <div class="hero-cta-group">
-                        <button class="btn-action" onclick="openPage('contacto')">
+                        <button class="btn-action btn-outline" onclick="openPage('contacto')">
                             <i class="fa-brands fa-whatsapp"></i> Contacto
                         </button>
-                        <a href="tel:4422023910" class="btn-action">
+                        <a href="tel:4422023910" class="btn-action btn-outline">
                             <i class="fa-solid fa-phone"></i> Llamar
                         </a>
                     </div>
@@ -1189,7 +1198,6 @@
 
             <div class="section-container">
                 <div class="home-info-block reveal-item">
-                    <h3>Soluciones Integrales para la Industria y Urbanización</h3>
                     <p>Con más de dos décadas de trayectoria, <strong>Seltos Ingeniería</strong> destaca por su capacidad técnica y operativa en todo el país. Nuestro compromiso es entregar obras de alta calidad, cumpliendo rigurosamente con las normativas vigentes en seguridad e ingeniería.</p>
                     <p>Garantizamos la máxima seguridad y eficiencia en instalaciones industriales, comerciales y residenciales, respaldados por personal calificado y acreditado para la emisión de dictámenes normativos oficiales en líneas de gas LP y gas natural.</p>
                 </div>
@@ -1365,76 +1373,94 @@
                 </div>
 
                 <div class="services-list-grid">
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-faucet-drip"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-faucet-drip"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Canalización de Redes</h4>
                         </div>
-                        <h4>Canalización de Redes</h4>
-                        <p>Canalización de redes gas, agua, drenaje, fibra óptica y eléctricas, en los distintos materiales: Acero al carbón, Acero inoxidable, Polietileno, PVC, CPVC y encamisados.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Canalización de redes gas, agua, drenaje, fibra óptica y eléctricas, en los distintos materiales: Acero al carbón, Acero inoxidable, Polietileno, PVC, CPVC y encamisados.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-fire-flame-simple"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-fire-flame-simple"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Instalaciones de Gas Natural y Gas LP</h4>
                         </div>
-                        <h4>Instalaciones de Gas Natural y Gas LP</h4>
-                        <p>Instalaciones Industriales, comerciales y residenciales de gas natural y gas LP adaptadas a los requerimientos de cada proyecto.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Instalaciones Industriales, comerciales y residenciales de gas natural y gas LP adaptadas a los requerimientos de cada proyecto.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-bolt"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Proyectos Eléctricos</h4>
                         </div>
-                        <h4>Proyectos Eléctricos</h4>
-                        <p>Proyectos eléctricos alta y media tensión para comercios e industrias con estricto apego a las normas técnicas.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Proyectos eléctricos alta y media tensión para comercios e industrias con estricto apego a las normas técnicas.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-gauge-high"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Pruebas de Hermeticidad</h4>
                         </div>
-                        <h4>Pruebas de Hermeticidad</h4>
-                        <p>Pruebas de hermeticidad neumáticas e hidráulicas hasta <strong>420 kg/cm²</strong> con equipos calibrados y certificados.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Pruebas de hermeticidad neumáticas e hidráulicas hasta <strong>420 kg/cm²</strong> con equipos calibrados y certificados.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-temperature-arrow-up"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-temperature-arrow-up"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Soldadura Termo y Electrofusión</h4>
                         </div>
-                        <h4>Soldadura Termo y Electrofusión</h4>
-                        <p>Soldadura termo y electro fusión de polietileno de alta y baja densidad ejecutada por técnicos especialistas.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Soldadura termo y electro fusión de polietileno de alta y baja densidad ejecutada por técnicos especialistas.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-bore-hole"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-bore-hole"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Perforaciones Direccionales (2" a 48")</h4>
                         </div>
-                        <h4>Perforaciones Direccionales (2" a 48")</h4>
-                        <p>Direccionales de 2 hasta 48" en terreno tipo (2 y 3 Rocoso en la zona de Querétaro) y cruces carreteros o ferroviarios.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Direccionales de 2 hasta 48" en terreno tipo (2 y 3 Rocoso en la zona de Querétaro) y cruces carreteros o ferroviarios.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-boxes-stacked"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Venta de Materiales</h4>
                         </div>
-                        <h4>Venta de Materiales</h4>
-                        <p>Venta de materiales de acero al carbón y polietileno para distintos usos industriales, comerciales y de urbanización.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Venta de materiales de acero al carbón y polietileno para distintos usos industriales, comerciales y de urbanización.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-spray-can-sparkles"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-spray-can-sparkles"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Sandblasteado y Recubrimientos</h4>
                         </div>
-                        <h4>Sandblasteado y Recubrimientos</h4>
-                        <p>Sandblasteado y recubrimientos para tuberías garantizando máxima protección anticorrosiva y durabilidad operativa.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Sandblasteado y recubrimientos para tuberías garantizando máxima protección anticorrosiva y durabilidad operativa.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-clipboard-check"></i>
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Dictámenes Normativos</h4>
                         </div>
-                        <h4>Dictámenes Normativos</h4>
-                        <p>Dictámenes de línea de gas LP y gas natural conforme a la norma vigente con personal acreditado.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem;">Dictámenes de línea de gas LP y gas natural conforme a la norma vigente con personal acreditado.</p>
                     </div>
                 </div>
             </div>
@@ -1591,7 +1617,7 @@
                         </div>
                     </article>
 
-                    <!-- PROYECTO 6 -->
+                    <!-- PROYECTO 6 (Línea interna gas - Corregidos los nombres de JPG) -->
                     <article class="project-slide-card reveal-item">
                         <div class="project-details-pane">
                             <h3>LÍNEA INTERNA GAS NATURAL Y MOVIMIENTO DE CONTENEDORES</h3>
@@ -1731,11 +1757,14 @@
                         </div>
                         
                         <div class="contact-actions">
-                            <a href="https://wa.me/524422023910" target="_blank" class="btn-action btn-solid-contacto">
+                            <a href="https://wa.me/524422023910" target="_blank" class="btn-action btn-outline">
                                 <i class="fa-brands fa-whatsapp"></i> Contacto
                             </a>
-                            <a href="tel:4422023910" class="btn-action btn-outline-llamar">
+                            <a href="tel:4422023910" class="btn-action btn-outline">
                                 <i class="fa-solid fa-phone"></i> Llamar
+                            </a>
+                            <a href="https://maps.app.goo.gl/bQQXUJR53ALE5WBSA?g_st=iw" target="_blank" class="btn-action btn-outline">
+                                <i class="fa-solid fa-location-dot"></i> Ubicación
                             </a>
                         </div>
                     </div>
