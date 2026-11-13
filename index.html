@@ -265,6 +265,22 @@
             align-items: center;
         }
 
+        .foundation-year {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            color: var(--navy-dark);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
         .hero h1 {
             font-size: clamp(3.5rem, 8vw, 5.5rem);
             font-weight: 900;
@@ -320,12 +336,6 @@
             margin: 0 auto;
             text-align: center;
             padding: 2rem 0;
-        }
-
-        .home-info-block h3 {
-            font-size: 1.85rem;
-            color: var(--navy-dark);
-            margin-bottom: 1.5rem;
         }
 
         .home-info-block p {
@@ -1044,35 +1054,23 @@
                 min-height: 280px;
                 padding: 0; 
             }
+            
+            /* En móvil ajustamos exactamente el espacio a la imagen para no dejar franja azul en nuestro servicios */
+            .services-banner-img {
+                min-height: unset;
+                height: auto;
+                line-height: 0;
+                font-size: 0;
+            }
+            .services-banner-img img {
+                height: auto;
+            }
 
             /* Controles Slider en Móvil visibles */
             .swiper-button-next, .swiper-button-prev, .swiper-pagination {
                 display: flex !important;
             }
             
-            /* Ajustar altura de la foto en el slider y el recuadro para móvil (Sin franja azul sobrante) */
-            .services-banner-img,
-            .project-slide-card .swiper-slide {
-                display: block; 
-                height: auto; 
-                line-height: 0;
-            }
-            .services-banner-img img,
-            .project-slide-card .swiper-slide img {
-                display: block;
-                width: 100%;
-                height: auto;
-                max-height: none; 
-            }
-            .project-slide-card .swiper {
-                min-height: unset;
-                height: auto;
-            }
-            .project-slide-card .swiper-wrapper {
-                height: auto;
-                align-items: flex-start;
-            }
-
             /* Asegurar orden en móvil: Texto arriba, Imagen/Slider abajo y pegado */
             .services-hero-banner {
                 display: flex;
@@ -1241,7 +1239,7 @@
                 </div>
 
                 <!-- ¿Por qué elegir trabajar con SELTOS? -->
-                <div class="section-header reveal-item" style="margin-top: 3rem;">
+                <div class="section-header reveal-item" style="margin-top: 5rem;">
                     <h2 class="section-title">¿Por qué elegir trabajar con SELTOS?</h2>
                 </div>
                 <div class="features-grid">
@@ -1411,17 +1409,7 @@
                 </div>
 
                 <div class="services-list-grid">
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
-                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
-                                <i class="fa-solid fa-faucet-drip"></i>
-                            </div>
-                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Canalización de Redes</h4>
-                        </div>
-                        <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Canalización de redes gas, agua, drenaje, fibra óptica y eléctricas, en los distintos materiales: Acero al carbón, Acero inoxidable, Polietileno, PVC, CPVC y encamisados.</p>
-                    </div>
-
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-fire-flame-simple"></i>
@@ -1431,17 +1419,27 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Instalaciones Industriales, comerciales y residenciales de gas natural y gas LP adaptadas a los requerimientos de cada proyecto.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
-                                <i class="fa-solid fa-bolt"></i>
+                                <i class="fa-solid fa-clipboard-check"></i>
                             </div>
-                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Proyectos Eléctricos</h4>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Dictámenes Normativos</h4>
                         </div>
-                        <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Proyectos eléctricos alta y media tensión para comercios e industrias con estricto apego a las normas técnicas.</p>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Dictámenes de línea de gas LP y gas natural conforme a la norma vigente con personal acreditado.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-faucet-drip"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Canalización de Redes</h4>
+                        </div>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Canalización de redes gas, agua, drenaje, fibra óptica y eléctricas, en los distintos materiales: Acero al carbón, Acero inoxidable, Polietileno, PVC, CPVC y encamisados.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-gauge-high"></i>
@@ -1451,7 +1449,17 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Pruebas de hermeticidad neumáticas e hidráulicas hasta <strong>420 kg/cm²</strong> con equipos calibrados y certificados.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
+                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Proyectos Eléctricos</h4>
+                        </div>
+                        <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Proyectos eléctricos alta y media tensión para comercios e industrias con estricto apego a las normas técnicas.</p>
+                    </div>
+
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-temperature-arrow-up"></i>
@@ -1461,7 +1469,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Soldadura termo y electro fusión de polietileno de alta y baja densidad ejecutada por técnicos especialistas.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-bore-hole"></i>
@@ -1471,7 +1479,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Direccionales de 2 hasta 48" en terreno tipo (2 y 3 Rocoso en la zona de Querétaro) y cruces carreteros o ferroviarios.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-boxes-stacked"></i>
@@ -1481,7 +1489,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Venta de materiales de acero al carbón y polietileno para distintos usos industriales, comerciales y de urbanización.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-spray-can-sparkles"></i>
@@ -1489,16 +1497,6 @@
                             <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Sandblasteado y Recubrimientos</h4>
                         </div>
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Sandblasteado y recubrimientos para tuberías garantizando máxima protección anticorrosiva y durabilidad operativa.</p>
-                    </div>
-
-                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
-                            <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
-                                <i class="fa-solid fa-clipboard-check"></i>
-                            </div>
-                            <h4 style="margin-bottom: 0; text-align: left; font-size: 1.1rem; line-height: 1.3;">Dictámenes Normativos</h4>
-                        </div>
-                        <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Dictámenes de línea de gas LP y gas natural conforme a la norma vigente con personal acreditado.</p>
                     </div>
                 </div>
             </div>
@@ -1655,7 +1653,7 @@
                         </div>
                     </article>
 
-                    <!-- PROYECTO 6 (Línea interna gas - Corregidos JPG) -->
+                    <!-- PROYECTO 6 -->
                     <article class="project-slide-card reveal-item">
                         <div class="project-details-pane">
                             <h3>LÍNEA INTERNA GAS NATURAL Y MOVIMIENTO DE CONTENEDORES</h3>
@@ -1800,6 +1798,9 @@
                             </a>
                             <a href="tel:4422023910" class="btn-action btn-outline-llamar">
                                 <i class="fa-solid fa-phone"></i> Llamar
+                            </a>
+                            <a href="https://maps.app.goo.gl/bQQXUJR53ALE5WBSA?g_st=iw" target="_blank" class="btn-action btn-outline-llamar">
+                                <i class="fa-solid fa-location-dot"></i> Ubicación
                             </a>
                         </div>
                     </div>
