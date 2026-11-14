@@ -219,6 +219,21 @@
             margin: 0 auto 3.5rem auto;
         }
 
+        .section-badge {
+            display: inline-block;
+            background-color: rgba(0, 29, 82, 0.1);
+            color: var(--navy-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            margin-bottom: 0.85rem;
+            border-left: 3px solid var(--navy-primary);
+        }
+
         .section-title {
             font-size: clamp(1.85rem, 3.5vw, 2.75rem);
             color: var(--navy-dark);
@@ -234,7 +249,7 @@
 
         /* HERO PORTADA */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.28)), url('fondo.jpeg') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), url('fondo.jpeg') center/cover no-repeat;
             color: var(--navy-dark);
             padding: 7.5rem 1.5rem;
             position: relative;
@@ -248,6 +263,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .foundation-year {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            color: var(--navy-dark);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
         .hero h1 {
@@ -865,6 +896,84 @@
             background-color: var(--white);
             color: var(--navy-dark);
         }
+        
+        /* FORMULARIO DE CONTACTO */
+        .contact-form-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 3.5rem;
+            margin-top: 3rem;
+            box-shadow: var(--card-shadow);
+            border-top: 5px solid var(--accent-blue);
+        }
+
+        .contact-form-container h4 {
+            color: var(--navy-dark);
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background: var(--white);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--navy-primary);
+        }
+
+        .form-group select.form-control {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23001D52%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem top 50%;
+            background-size: 0.65rem auto;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn-submit {
+            background-color: var(--navy-primary);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--navy-secondary);
+        }
 
         /* Footer */
         footer {
@@ -1014,6 +1123,10 @@
             .contact-info-card {
                 padding: 2.5rem 1.5rem;
             }
+            
+            .contact-form-container {
+                padding: 2.5rem 1.5rem;
+            }
 
             .projects-intro-collage {
                 grid-template-columns: 1fr;
@@ -1070,7 +1183,7 @@
                 font-size: 0.95rem;
             }
             
-            /* Botones Horizontales en Móvil (Contacto) */
+            /* Botones Horizontales en Móvil (Contacto) - Envuelve fluidamente */
             .contact-actions {
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -1378,7 +1491,7 @@
                 </div>
 
                 <div class="services-list-grid">
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-fire-flame-simple"></i>
@@ -1388,7 +1501,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Instalaciones Industriales, comerciales y residenciales de gas natural y gas LP adaptadas a los requerimientos de cada proyecto.</p>
                     </div>
                     
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-clipboard-check"></i>
@@ -1398,7 +1511,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Dictámenes de línea de gas LP y gas natural conforme a la norma vigente con personal acreditado.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-faucet-drip"></i>
@@ -1408,7 +1521,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Canalización de redes gas, agua, drenaje, fibra óptica y eléctricas, en los distintos materiales: Acero al carbón, Acero inoxidable, Polietileno, PVC, CPVC y encamisados.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-bolt"></i>
@@ -1418,7 +1531,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Proyectos eléctricos alta y media tensión para comercios e industrias con estricto apego a las normas técnicas.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-gauge-high"></i>
@@ -1428,7 +1541,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Pruebas de hermeticidad neumáticas e hidráulicas hasta <strong>420 kg/cm²</strong> con equipos calibrados y certificados.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-temperature-arrow-up"></i>
@@ -1438,7 +1551,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Soldadura termo y electro fusión de polietileno de alta y baja densidad ejecutada por técnicos especialistas.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-bore-hole"></i>
@@ -1448,7 +1561,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Direccionales de 2 hasta 48" en terreno tipo (2 y 3 Rocoso en la zona de Querétaro) y cruces carreteros o ferroviarios.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-boxes-stacked"></i>
@@ -1458,7 +1571,7 @@
                         <p style="text-align: left; margin: 0; font-size: 0.95rem; width: 100%;">Venta de materiales de acero al carbón y polietileno para distintos usos industriales, comerciales y de urbanización.</p>
                     </div>
 
-                    <div class="service-item-card reveal-item" style="align-items: flex-start; text-align: left; padding: 1.5rem;">
+                    <div class="service-item-card reveal-item" style="padding: 1.5rem;">
                         <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.85rem; width: 100%;">
                             <div class="service-icon-box" style="width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 0; flex-shrink: 0;">
                                 <i class="fa-solid fa-spray-can-sparkles"></i>
@@ -1743,6 +1856,7 @@
         <section id="page-contacto" class="page-view">
             <div class="section-container">
                 <div class="contact-centered-wrapper">
+                    
                     <div class="contact-info-card reveal-item">
                         <h3>Canales de Comunicación</h3>
                         <p>Comuníquese directamente con nuestro equipo de ingeniería por correo electrónico.</p>
@@ -1773,6 +1887,60 @@
                             </a>
                         </div>
                     </div>
+                    
+                    <!-- Formulario de Contacto FormSubmit -->
+                    <div class="contact-form-container reveal-item">
+                        <h4>Enviar Mensaje</h4>
+                        <form action="https://formsubmit.co/seltosingenieria@gmail.com" method="POST">
+                            <!-- Honeypot para evitar spam -->
+                            <input type="text" name="_honey" style="display:none">
+                            <!-- Desactivar Captcha -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <!-- Página de éxito (opcional, redirige a la misma página) -->
+                            <input type="hidden" name="_next" value="https://seltosingenieria.com/#contacto">
+                            
+                            <div class="form-group">
+                                <label for="name">Nombre / Empresa</label>
+                                <input type="text" id="name" name="name" class="form-control" required placeholder="Su nombre">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" class="form-control" required placeholder="correo@ejemplo.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Teléfono</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" required placeholder="Número de contacto">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Ciudad o Estado</label>
+                                <input type="text" id="location" name="location" class="form-control" required placeholder="Ej. Querétaro">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sector">Sector de Interés</label>
+                                <select id="sector" name="sector" class="form-control" required>
+                                    <option value="" disabled selected>Seleccione un sector...</option>
+                                    <option value="Industrial y Manufactura">Industrial y Manufactura</option>
+                                    <option value="Desarrollos Inmobiliarios y Urbanos">Desarrollos Inmobiliarios y Urbanos</option>
+                                    <option value="Infraestructura Pública y Carretera">Infraestructura Pública y Carretera</option>
+                                    <option value="Sector Agroindustrial">Sector Agroindustrial</option>
+                                    <option value="Comercial y Hospitalidad">Comercial y Hospitalidad</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Mensaje / Detalles del Proyecto</label>
+                                <textarea id="message" name="message" class="form-control" required placeholder="¿En qué podemos ayudarle?"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">Enviar Mensaje <i class="fa-solid fa-paper-plane" style="margin-left: 5px;"></i></button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -1931,6 +2099,14 @@
 
             observeRevealElements();
             initSwipers();
+            
+            // Check hash on load to open specific page if needed
+            if (window.location.hash) {
+                const pageKey = window.location.hash.substring(1);
+                if (document.getElementById('page-' + pageKey)) {
+                    openPage(pageKey);
+                }
+            }
         });
 
         window.addEventListener('resize', () => {
